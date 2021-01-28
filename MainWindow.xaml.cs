@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace VesselApp
 {
     /// <summary>
@@ -21,28 +23,25 @@ namespace VesselApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string connection = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\Users\Nexitt\Desktop\IPKM2005\IPKM2005DB\IPKM2005DB.accdb"; // путь к базе данных
-        public OleDbDataReader Select(string selectSQL) // функция подключения к базе данных и обработка запросов
-        {
-            OleDbConnection connect = new OleDbConnection(connection); // подключаемся к базе данных
-            connect.Open(); // открываем базу данных
-
-            OleDbCommand cmd = new OleDbCommand(selectSQL, connect); // создаём запрос
-            OleDbDataReader reader = cmd.ExecuteReader(); // получаем данные
-
-            return reader; // возвращаем
-        }
-
-
-
         public MainWindow()
         {
             InitializeComponent();
-            OleDbDataReader read = Select("SELECT * FROM Users"); // запрашиваем данные
-            while (read.Read())
-            { // обрабатываем данные
-                MessageBox.Show("Код: " + read.GetValue(0) + " Логин: " + read.GetValue(1) + " Пароль: " + read.GetValue(2)); // выводим данные
-            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Desktop\IPKM2005\VesselApp\IPKM2005DB.accdb");
+            con.Open();
+
+            OleDbDataAdapter da = new OleDbDataAdapter("select Valve_numbers.Number from Valve_numbers", con);
+            OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Valve_numbers");
+
+            MainGrid.ItemsSource = ds.Tables["Valve_numbers"].DefaultView;
+            con.Close();
+
         }
     }
 }

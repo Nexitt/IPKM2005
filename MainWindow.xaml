@@ -5,5 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VesselApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="530" Width="800">
+        Title="ИПКМ 2005" Height="500" Width="1000" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:IPKM2005DBDataSet x:Key="iPKM2005DBDataSet"/>
+        <CollectionViewSource x:Key="valve_numbersViewSource" Source="{Binding Valve_numbers, Source={StaticResource iPKM2005DBDataSet}}"/>
+        <CollectionViewSource x:Key="datesViewSource" Source="{Binding Dates, Source={StaticResource iPKM2005DBDataSet}}"/>
+        <CollectionViewSource x:Key="statusViewSource" Source="{Binding Status, Source={StaticResource iPKM2005DBDataSet}}"/>
+    </Window.Resources>
+    <Grid>
+        <DataGrid Name="MainGrid" Margin="10,10,10,160"/>
+    </Grid>
+    
 </Window>
