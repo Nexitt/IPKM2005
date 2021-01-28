@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("VesselApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("gypnor")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("VesselApp")]
-[assembly: AssemblyCopyright("Copyright © gypnor 2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
