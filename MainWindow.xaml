@@ -13,7 +13,35 @@
         <CollectionViewSource x:Key="statusViewSource" Source="{Binding Status, Source={StaticResource iPKM2005DBDataSet}}"/>
     </Window.Resources>
     <Grid>
-        <DataGrid Name="MainGrid" Margin="10,10,10,160"/>
+        <DataGrid Name="MainGrid" Margin="10,10,10,160">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding Код}" Width="40"/>
+                <DataGridTextColumn Header="Номер вентиля" Binding="{Binding Number}" Width="150"/>
+                <DataGridComboBoxColumn Header="Статус" SelectedItemBinding="{Binding Path=Status}"  Width="110">
+                    
+                </DataGridComboBoxColumn>
+                <DataGridTextColumn Header="Название вентиля" Binding="{Binding Product_name}" Width="150"/>
+                <DataGridTextColumn Header="Тип вентиля" Binding="{Binding Type}" Width="100"/>
+                <DataGridTextColumn Header="Название сосуда" Binding="{Binding Vessel_name}" Width="100"/>
+                <DataGridTextColumn Header="Номер сосуда" Binding="{Binding Reg_number}" Width="100"/>
+                <DataGridTemplateColumn Header="Плановая дата" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Status}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Фактическая дата" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Status}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="SaveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="150" Height="40
+                " Click="Button_Click"/>
     </Grid>
-    
+
 </Window>

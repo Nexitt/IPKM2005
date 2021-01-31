@@ -33,15 +33,46 @@ namespace VesselApp
             OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Desktop\IPKM2005\VesselApp\IPKM2005DB.accdb");
             con.Open();
 
-            OleDbDataAdapter da = new OleDbDataAdapter("select Valve_numbers.Number from Valve_numbers", con);
+            OleDbDataAdapter da = new OleDbDataAdapter("select * from [Valve_numbers Запрос]", con);
             OleDbCommandBuilder cb = new OleDbCommandBuilder(da);
 
             DataSet ds = new DataSet();
-            da.Fill(ds, "Valve_numbers");
+            da.Fill(ds, "[Valve_numbers Запрос]");
 
-            MainGrid.ItemsSource = ds.Tables["Valve_numbers"].DefaultView;
+            MainGrid.ItemsSource = ds.Tables["[Valve_numbers Запрос]"].DefaultView;
             con.Close();
 
+            /*List<MainInfo> mainInfo = new List<MainInfo>();
+            MainGrid.ItemsSource = mainInfo;*/
+
+
+        }
+
+        /*public class MainInfo
+        {
+            public int Id { get; set; }
+
+            public string Number { get; set; }
+
+            public ComboBox Status { get; set; }
+
+            public string Product_name { get; set; }
+            
+            public string Type { get; set; }
+
+            public string Vessel_name { get; set; }
+
+            public string Reg_number { get; set; }
+
+            public DateTime Plan_date { get; set; }
+
+            public DateTime Fact_date { get; set; }
+
+        }*/
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
