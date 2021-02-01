@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 
 
 namespace VesselApp
@@ -23,13 +24,52 @@ namespace VesselApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        string connectionString;
+        OleDbDataAdapter adapter;
+        DataTable dt; //phonesTable;
+
         public MainWindow()
         {
             InitializeComponent();
+            connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Desktop\IPKM2005\VesselApp\IPKM2005DB.accdb";
         }
+
+        /*static string conString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Desktop\IPKM2005\VesselApp\IPKM2005DB.accdb";
+        OleDbConnection con = new OleDbConnection(conString);
+        DataTable dt = new DataTable();*/
+
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            /*string accdbSQL = "select * from [Valve_numbers Запрос]";
+            dt = new DataTable();
+            OleDbConnection con = null;
+
+            try
+            {
+                con = new OleDbConnection(connectionString);
+                adapter = new OleDbDataAdapter(accdbSQL, con);
+                OleDbCommandBuilder cb = new OleDbCommandBuilder(adapter);
+
+                adapter.InsertCommand = new OleDbCommand("select * from [Valve_numbers Запрос]", con);
+                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adapter.InsertCommand.Parameters.Add(new OleDbParameter("@Code", OleDbType.Integer, 50, "[Код]"));
+                adapter.InsertCommand.Parameters.Add(new OleDbParameter("@NumberVessel", OleDbType.Integer, 50, "[Number]"));
+
+                OleDbParameter parameter = adapter.InsertCommand.Parameters.Add("@Code", OleDbType.Integer, 0, "[Код]");
+
+                con.Open();
+                adapter.Fill(dt);
+                MainGrid.ItemsSource = dt.DefaultView;
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+
+            //удачный вариант
             OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\User\Desktop\IPKM2005\VesselApp\IPKM2005DB.accdb");
             con.Open();
 
@@ -42,11 +82,13 @@ namespace VesselApp
             MainGrid.ItemsSource = ds.Tables["[Valve_numbers Запрос]"].DefaultView;
             con.Close();
 
+
+            
+
             /*List<MainInfo> mainInfo = new List<MainInfo>();
             MainGrid.ItemsSource = mainInfo;*/
-
-
         }
+
 
         /*public class MainInfo
         {
@@ -72,7 +114,8 @@ namespace VesselApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            AddForm addForm = new AddForm();
+            addForm.Show();
         }
     }
 }

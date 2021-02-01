@@ -16,3 +16,5 @@ C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\IPKM2005.csproj.GenerateResou
 C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\IPKM2005.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\VesselApp.exe
 C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\VesselApp.pdb
+C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\AddForm.g.cs
+C:\Users\User\Desktop\IPKM2005\VesselApp\obj\Debug\AddForm.baml
